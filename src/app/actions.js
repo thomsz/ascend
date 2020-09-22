@@ -7,3 +7,7 @@ export const setName = (name) => {
 export const setMotherTongue = (value) => {
 	return { type: types.SET_MOTHER_TONGUE, payload: value };
 };
+
+export const setLookingFor = (value) => {
+	return { type: types.SET_LOOKING_FOR, payload: value };
+};

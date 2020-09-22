@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Input, Radio } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-import { setName, setMotherTongue } from '../../../app/actions';
+import { setName, setMotherTongue, setLookingFor } from '../../../app/actions';
 
 const Preferences = () => {
 	const dispatch = useDispatch();
@@ -10,6 +10,7 @@ const Preferences = () => {
 	const [{ nameInput }, setNameInput] = useState({ nameInput: name });
 
 	const motherTongue = useSelector((state) => state.preferences.motherTongue);
+	const lookingFor = useSelector((state) => state.preferences.lookingFor);
 
 	const nameChangeHandler = (event) => {
 		setNameInput({ nameInput: event.target.value });
@@ -21,6 +22,10 @@ const Preferences = () => {
 
 	const motherTongueHandler = (event) => {
 		dispatch(setMotherTongue(event.target.value));
+	};
+
+	const lookingForHandler = (event) => {
+		dispatch(setLookingFor(event.target.value));
 	};
 
 	return (
@@ -46,7 +51,10 @@ const Preferences = () => {
 					</Radio.Group>
 				</Form.Item>
 				<Form.Item label="I'm looking for">
-					<Radio.Group>
+					<Radio.Group
+						defaultValue={lookingFor}
+						onChange={lookingForHandler}
+					>
 						<Radio.Button value="de">Deutsch</Radio.Button>
 						<Radio.Button value="he">עברית</Radio.Button>
 					</Radio.Group>
